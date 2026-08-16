@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amplitude Fisioterapia — Recupere cada grau do seu movimento</title>
+<meta name="description" content="Clínica de fisioterapia no Rio de Janeiro. Avaliação detalhada, plano individual e acompanhamento até você recuperar amplitude de movimento e voltar a fazer o que gosta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2F4EE;
+    --bg-soft:#E7EBDE;
+    --panel:#FFFFFF;
+    --ink:#17241D;
+    --ink-soft:#4C5C50;
+    --ink-faint:#8A9686;
+    --primary:#2E6B55;
+    --primary-deep:#1E4A3A;
+    --primary-pale:#DCE8DF;
+    --accent:#C6842E;
+    --accent-pale:#F3E1BE;
+    --line:#D6DEC9;
+    --radius:14px;
+    --maxw:1180px;
+    --shadow:0 20px 50px -25px rgba(23,36,29,0.35);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--primary-deep);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    border:1px solid transparent;
+    transition:transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{ background:var(--primary); color:#fff; }
+  .btn-primary:hover{ background:var(--primary-deep); transform:translateY(-2px); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--primary); color:var(--primary-deep); transform:translateY(-2px); }
+  .btn-sm{ padding:10px 18px; font-size:13.5px; }
+
+  /* ---------- Divider (signature motif, reused) ---------- */
+  .arc-divider{
+    display:flex;
+    justify-content:center;
+    padding:6px 0 2px;
+    color:var(--line);
+  }
+  .arc-divider svg{ overflow:visible; }
+  .arc-divider path{ stroke:var(--line); }
+  .arc-divider line{ stroke:var(--line); }
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(242,244,238,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:78px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    min-width:0;
+  }
+  .brand-mark{
+    width:54px;
+    height:54px;
+    flex-shrink:0;
+    display:block;
+  }
+  .logo{
+    display:flex; align-items:baseline; gap:8px;
+    font-family:'Fraunces',serif; font-weight:600; font-size:22px; color:var(--ink);
+    white-space:nowrap;
+  }
+  .logo span{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px; font-weight:400; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--ink-faint);
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:34px;
+    font-size:14.5px; font-weight:500; color:var(--ink-soft);
+  }
+  .nav-links a{ position:relative; padding:4px 0; transition:color .2s ease; }
+  .nav-links a:hover{ color:var(--primary-deep); }
+  .nav-actions{ display:flex; align-items:center; gap:22px; }
+  .nav-toggle{
+    display:none; background:none; border:none; padding:8px;
+    flex-direction:column; gap:5px;
+  }
+  .nav-toggle span{ width:22px; height:2px; background:var(--ink); display:block; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:76px 0 40px; }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(34px,4.6vw,58px);
+    line-height:1.06;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--primary);
+  }
+  .hero p.lead{
+    font-size:17.5px;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin:0 0 32px;
+  }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px; }
+  .hero-note{
+    display:flex; align-items:center; gap:10px;
+    font-size:13.5px; color:var(--ink-faint);
+  }
+  .hero-note .dots{ display:flex; gap:-4px; }
+
+  .hero-visual{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:var(--shadow);
+    position:relative;
+  }
+  .hero-visual .readout{
+    position:absolute;
+    top:34px; right:34px;
+    text-align:right;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .hero-visual .readout .deg{
+    font-size:34px; color:var(--primary-deep); font-weight:500;
+    font-variant-numeric:tabular-nums;
+  }
+  .hero-visual .readout .label{
+    font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint);
+  }
+
+  .hero-img-container{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-img-container img{
+    width:100%;
+    height:auto;
+    object-fit:cover;
+    border-radius:20px;
+  }
+
+  /* ---------- Stats ---------- */
+  .stats{ padding:50px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bg-soft); }
+  .stats .wrap{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  }
+  .stat b{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(26px,3vw,36px);
+    color:var(--primary-deep);
+    font-weight:500;
+  }
+  .stat span{ font-size:13.5px; color:var(--ink-soft); }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:96px 0; }
+  .section-head{
+    max-width:640px;
+    margin:0 auto 52px;
+    text-align:center;
+  }
+  .section-head h2{
+    font-size:clamp(28px,3.4vw,40px);
+    margin-top:16px;
+  }
+  .section-head p{ color:var(--ink-soft); font-size:16px; margin-top:14px; }
+
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Services ---------- */
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 28px 26px;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .service-card:hover{ border-color:var(--primary); transform:translateY(-4px); }
+  .service-card h3{ font-size:20px; margin:16px 0 8px; }
+  .service-card p{ font-size:14.5px; color:var(--ink-soft); margin:0; }
+  .service-card .arc-icon{ position:absolute; top:18px; right:18px; }
+  .service-card .arc-icon .fill{
+    stroke-dasharray:0 999;
+    transition:stroke-dasharray 1s ease;
+  }
+  .service-card.is-visible .arc-icon .fill{ stroke-dasharray: var(--fill-len) 999; }
+
+  /* ---------- Process ---------- */
+  .process{ background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .process-list{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    counter-reset:step;
+  }
+  .process-step{
+    padding:0 22px;
+    border-left:1px solid var(--line);
+    position:relative;
+  }
+  .process-step:first-child{ border-left:none; padding-left:0; }
+  .process-step .num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px; color:var(--accent);
+    letter-spacing:0.06em;
+    margin-bottom:14px;
+    display:block;
+  }
+  .process-step h3{ font-size:18.5px; margin-bottom:10px; }
+  .process-step p{ font-size:14.5px; color:var(--ink-soft); margin:0; }
+
+  /* ---------- Team ---------- */
+  .team-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .team-card{ text-align:left; }
+  .avatar{
+    width:100%; aspect-ratio:1/1;
+    border-radius:12px;
+    background:linear-gradient(155deg,var(--primary-pale),var(--bg-soft));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:40px; color:var(--primary-deep);
+    margin-bottom:16px;
+    border:1px solid var(--line);
+  }
+  .team-card h3{ font-size:18px; margin-bottom:2px; }
+  .team-card .role{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; display:block; }
+  .team-card p{ font-size:14px; color:var(--ink-soft); margin:0; }
+
+  /* ---------- Testimonials ---------- */
+  .testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .testimonial{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+  }
+  .testimonial .quote{ font-size:15.5px; color:var(--ink); margin-bottom:20px; }
+  .testimonial .who{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-faint); }
+  .testimonial .who b{ color:var(--primary-deep); font-weight:500; }
+
+  /* ---------- Booking ---------- */
+  .booking{ background:var(--primary-deep); color:#fff; border-radius:26px; margin:0 32px; padding:70px 0; }
+  .booking .wrap{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+  }
+  .booking .eyebrow{ color:var(--accent-pale); }
+  .booking .eyebrow::before{ background:var(--accent); }
+  .booking h2{ color:#fff; font-size:clamp(26px,3vw,36px); margin:16px 0 18px; }
+  .booking p{ color:#CFE0D4; font-size:15.5px; max-width:42ch; margin-bottom:28px; }
+  .booking-info{ display:flex; flex-direction:column; gap:16px; }
+  .booking-info .row{ display:flex; gap:12px; font-size:14.5px; color:#E7F0EA; }
+  .booking-info .row b{ font-family:'IBM Plex Mono',monospace; font-weight:400; color:var(--accent-pale); min-width:88px; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; padding-top:2px; }
+
+  .booking-form{
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    color:var(--ink);
+  }
+  .booking-form .field{ margin-bottom:16px; }
+  .booking-form label{ display:block; font-size:12.5px; font-weight:600; margin-bottom:6px; color:var(--ink-soft); }
+  .booking-form input, .booking-form select, .booking-form textarea{
+    width:100%;
+    padding:12px 14px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--bg);
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .booking-form input:focus, .booking-form select:focus, .booking-form textarea:focus{
+    outline:2px solid var(--primary); outline-offset:1px;
+  }
+  .booking-form textarea{ resize:vertical; min-height:80px; }
+  .booking-form button{ width:100%; margin-top:6px; }
+  .form-success{
+    display:none;
+    margin-top:14px;
+    font-size:13.5px;
+    color:var(--primary-deep);
+    background:var(--primary-pale);
+    border-radius:8px;
+    padding:12px 14px;
+  }
+  .form-success.show{ display:block; }
+
+  /* ---------- Footer ---------- */
+  footer{ padding:60px 0 34px; }
+  .footer-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    padding-bottom:40px; border-bottom:1px solid var(--line); gap:40px; flex-wrap:wrap;
+  }
+  .footer-cols{ display:flex; gap:64px; flex-wrap:wrap; }
+  .footer-col h4{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:14px; }
+  .footer-col a, .footer-col p{ display:block; font-size:14px; color:var(--ink-soft); margin-bottom:9px; }
+  .footer-col a:hover{ color:var(--primary-deep); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:26px; font-size:13px; color:var(--ink-faint); flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- WhatsApp FAB ---------- */
+  .whatsapp-fab{
+    position:fixed; bottom:26px; right:26px; z-index:60;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--primary);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 24px -8px rgba(30,74,58,0.55);
+    transition:transform .25s ease;
+  }
+  .whatsapp-fab:hover{ transform:scale(1.08); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:920px){
+    .nav-links, .nav-actions .btn-ghost{ display:none; }
+    .nav-toggle{ display:flex; }
+    .hero .wrap{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; }
+    .stats .wrap{ grid-template-columns:repeat(2,1fr); row-gap:28px; }
+    .service-grid, .team-grid, .testimonial-grid{ grid-template-columns:repeat(2,1fr); }
+    .process-list{ grid-template-columns:repeat(2,1fr); row-gap:32px; }
+    .process-step{ border-left:none; padding-left:0; }
+    .booking .wrap{ grid-template-columns:1fr; }
+    .booking{ margin:0 16px; border-radius:20px; }
+  }
+  @media (max-width:600px){
+    .wrap{ padding:0 20px; }
+    .service-grid, .team-grid, .testimonial-grid, .process-list{ grid-template-columns:1fr; }
+    .footer-top{ flex-direction:column; }
+    section{ padding:64px 0; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" aria-label="Logo Sandra Xavier">
+        <path fill="#CD9662" d="M 100 200 C 60 320, 110 450, 250 450 C 370 450, 440 260, 400 130 C 425 250, 360 432, 250 432 C 125 432, 80 320, 100 200 Z" />
+        <path fill="#CD9662" d="M 215 110 C 185 125, 155 155, 155 215 C 155 275, 175 310, 205 360 C 172 310, 161 275, 161 215 C 161 155, 188 128, 215 110 Z" />
+        <path fill="#CD9662" d="M 285 110 C 315 125, 345 155, 345 215 C 345 275, 325 310, 295 360 C 328 310, 339 275, 339 215 C 339 155, 312 128, 285 110 Z" />
+        <path fill="#CD9662" d="M 145 200 C 137 230, 137 260, 142 290 C 140 260, 140 230, 145 200 Z" />
+        <path fill="#CD9662" d="M 355 200 C 363 230, 363 260, 358 290 C 360 260, 360 230, 355 200 Z" />
+        <g fill="#538C6B">
+          <circle cx="265" cy="100" r="3.5" />
+          <circle cx="258" cy="120" r="4.5" />
+          <circle cx="253" cy="145" r="6" />
+          <circle cx="247" cy="175" r="8" />
+          <circle cx="245" cy="210" r="10" />
+          <circle cx="246" cy="245" r="11" />
+          <circle cx="248" cy="280" r="11" />
+          <circle cx="252" cy="310" r="9.5" />
+          <circle cx="255" cy="335" r="8" />
+          <circle cx="257" cy="355" r="6" />
+          <circle cx="259" cy="370" r="4.5" />
+          <circle cx="260" cy="385" r="3.5" />
+        </g>
+      </svg>
+      <a href="#top" class="logo">Sandra Xavier <span>Fisioterapia</span></a>
+    </div>
+    <nav class="nav-links">
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#contato" class="btn btn-ghost btn-sm">Agendar avaliação</a>
+      <button class="nav-toggle" aria-label="Abrir menu" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Fisioterapia · Rio de Janeiro</span>
+        <h1>Fisioterapia moderna para resultados reais</h1>
+        <p class="lead">Unindo o que há de mais atual na ciência da reabilitação a um cuidado próximo e dedicado. Avaliação detalhada e planos de tratamento individuais para você superar a dor e recuperar sua autonomia.</p>
+        <div class="hero-actions">
+          <a href="#contato" class="btn btn-primary">Agendar avaliação</a>
+          <a href="#tratamentos" class="btn btn-ghost">Conhecer tratamentos</a>
+        </div>
+        <div class="hero-note">Dedicação total para devolver a sua qualidade de vida.</div>
+      </div>
+
+      <div class="hero-img-container">
+        <img src="assets/hero-img.jpeg" alt="Fisioterapeuta">
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- SERVICES -->
+  <section id="tratamentos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Tratamentos</span>
+        <h2>Um plano para cada tipo de movimento a recuperar</h2>
+        <p>Cada especialidade trabalha uma amplitude diferente — do pós-operatório à alta performance.</p>
+      </div>
+
+      <div class="service-grid">
+
+        <div class="service-card reveal" style="--fill-len:24">
+          <svg class="arc-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="18" fill="none" stroke="#E7EBDE" stroke-width="4"/><circle class="fill" cx="23" cy="23" r="18" fill="none" stroke="#2E6B55" stroke-width="4" stroke-linecap="round" transform="rotate(-90 23 23)"/></svg>
+          <h3>Ortopédica</h3>
+          <p>Pós-cirúrgico, entorses, fraturas e lesões articulares — recuperação de força e amplitude passo a passo.</p>
+        </div>
+
+        <div class="service-card reveal" style="--fill-len:38">
+          <svg class="arc-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="18" fill="none" stroke="#E7EBDE" stroke-width="4"/><circle class="fill" cx="23" cy="23" r="18" fill="none" stroke="#2E6B55" stroke-width="4" stroke-linecap="round" transform="rotate(-90 23 23)"/></svg>
+          <h3>Esportiva</h3>
+          <p>Prevenção de lesões e retorno seguro ao esporte, com testes funcionais específicos para sua modalidade.</p>
+        </div>
+
+        <div class="service-card reveal" style="--fill-len:16">
+          <svg class="arc-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="18" fill="none" stroke="#E7EBDE" stroke-width="4"/><circle class="fill" cx="23" cy="23" r="18" fill="none" stroke="#2E6B55" stroke-width="4" stroke-linecap="round" transform="rotate(-90 23 23)"/></svg>
+          <h3>Neurológica</h3>
+          <p>AVC, Parkinson e lesões medulares — reeducação motora com foco em autonomia no dia a dia.</p>
+        </div>
+
+        <div class="service-card reveal" style="--fill-len:50">
+          <svg class="arc-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="18" fill="none" stroke="#E7EBDE" stroke-width="4"/><circle class="fill" cx="23" cy="23" r="18" fill="none" stroke="#2E6B55" stroke-width="4" stroke-linecap="round" transform="rotate(-90 23 23)"/></svg>
+          <h3>RPG</h3>
+          <p>Reeducação postural global — correção de desalinhamentos que causam dor crônica.</p>
+        </div>
+
+        <div class="service-card reveal" style="--fill-len:33">
+          <svg class="arc-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="18" fill="none" stroke="#E7EBDE" stroke-width="4"/><circle class="fill" cx="23" cy="23" r="18" fill="none" stroke="#2E6B55" stroke-width="4" stroke-linecap="round" transform="rotate(-90 23 23)"/></svg>
+          <h3>Pilates clínico</h3>
+          <p>Fortalecimento, controle motor e estabilidade de tronco com prescrição individual.</p>
+        </div>
+
+        <div class="service-card reveal" style="--fill-len:12">
+          <svg class="arc-icon" width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="18" fill="none" stroke="#E7EBDE" stroke-width="4"/><circle class="fill" cx="23" cy="23" r="18" fill="none" stroke="#2E6B55" stroke-width="4" stroke-linecap="round" transform="rotate(-90 23 23)"/></svg>
+          <h3>Terceira idade</h3>
+          <p>Equilíbrio, mobilidade e prevenção de quedas para manter a independência.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="arc-divider">
+    <svg width="120" height="20" viewBox="0 0 120 20"><line x1="0" y1="10" x2="46" y2="10" stroke-width="1"/><path d="M46 18 A8 8 0 0 1 74 18" fill="none" stroke-width="1"/><line x1="74" y1="10" x2="120" y2="10" stroke-width="1"/></svg>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="process" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Como funciona</span>
+        <h2>Da avaliação à alta, em quatro etapas</h2>
+        <p>Você sabe exatamente onde está e o que vem a seguir em cada sessão.</p>
+      </div>
+      <div class="process-list">
+        <div class="process-step reveal">
+          <span class="num">01</span>
+          <h3>Avaliação inicial</h3>
+          <p>Anamnese completa e testes de amplitude de movimento, força e postura.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="num">02</span>
+          <h3>Plano personalizado</h3>
+          <p>Metas claras e cronograma de sessões definidos com você, não para você.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="num">03</span>
+          <h3>Sessões de tratamento</h3>
+          <p>Técnicas manuais, exercícios terapêuticos e reeducação de movimento.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="num">04</span>
+          <h3>Reavaliação e alta</h3>
+          <p>Medimos sua evolução e te preparamos para manter os resultados sozinho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="equipe">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Equipe</span>
+        <h2>Fisioterapeutas que acompanham cada etapa</h2>
+        <p>Um time pequeno e presente — você é atendido sempre pelas mesmas pessoas.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="avatar">CD</div>
+          <h3>Camila Duarte</h3>
+          <span class="role">Ortopedia &amp; esportiva</span>
+          <p>Especialista em reabilitação pós-cirúrgica e retorno ao esporte de alto rendimento.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="avatar">RM</div>
+          <h3>Rafael Moura</h3>
+          <span class="role">Neurofuncional</span>
+          <p>Atua com reeducação motora em pacientes neurológicos e reabilitação vestibular.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="avatar">LT</div>
+          <h3>Luiza Teixeira</h3>
+          <span class="role">RPG &amp; pilates clínico</span>
+          <p>Foco em postura, dor crônica e estabilidade de tronco através do movimento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="depoimentos" style="background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Depoimentos</span>
+        <h2>Quem passou pela Amplitude</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial reveal">
+          <p class="quote">Cheguei sem conseguir dobrar o joelho depois da cirurgia. Em três meses voltei a correr no aterro.</p>
+          <div class="who"><b>Marina S.</b> — reabilitação de joelho</div>
+        </div>
+        <div class="testimonial reveal">
+          <p class="quote">O plano foi feito pensando na minha rotina, não em um protocolo genérico. Isso fez toda a diferença.</p>
+          <div class="who"><b>Eduardo A.</b> — lombalgia crônica</div>
+        </div>
+        <div class="testimonial reveal">
+          <p class="quote">Minha mãe recuperou o equilíbrio para caminhar sozinha de novo. Time muito atencioso.</p>
+          <div class="who"><b>Beatriz R.</b> — familiar de paciente</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="contato">
+    <div class="wrap">
+      <div class="booking">
+        <div class="wrap" style="padding:0 48px;">
+          <div>
+            <span class="eyebrow">Contato</span>
+            <h2>Vamos começar sua recuperação?</h2>
+            <p>Preencha seus dados e entramos em contato para marcar sua avaliação inicial.</p>
+            <div class="booking-info">
+              <div class="row"><b>Endereço</b> Rua Voluntários da Pátria, 190 — Botafogo, Rio de Janeiro – RJ</div>
+              <div class="row"><b>Telefone</b> (21) 99999-9999</div>
+              <div class="row"><b>E-mail</b> contato@amplitudefisio.com.br</div>
+              <div class="row"><b>Horário</b> Seg–Sex: 7h–20h · Sáb: 8h–13h</div>
+            </div>
+          </div>
+
+          <form class="booking-form" id="bookingForm">
+            <div class="field">
+              <label for="name">Nome completo</label>
+              <input id="name" type="text" required placeholder="Seu nome">
+            </div>
+            <div class="field">
+              <label for="phone">WhatsApp / telefone</label>
+              <input id="phone" type="tel" required placeholder="(21) 90000-0000">
+            </div>
+            <div class="field">
+              <label for="treatment">Tratamento de interesse</label>
+              <select id="treatment">
+                <option>Ortopédica</option>
+                <option>Esportiva</option>
+                <option>Neurológica</option>
+                <option>RPG</option>
+                <option>Pilates clínico</option>
+                <option>Terceira idade</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Conte um pouco sobre o que sente (opcional)</label>
+              <textarea id="message" placeholder="Ex.: dor no joelho ao subir escadas há 2 semanas"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Solicitar horário</button>
+            <div class="form-success" id="formSuccess">Recebemos sua solicitação. Nossa equipe entra em contato em breve para confirmar o melhor horário.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="logo">Amplitude <span>Fisioterapia</span></a>
+        <p style="max-width:32ch; color:var(--ink-soft); font-size:14px; margin-top:14px;">Fisioterapia individualizada no Rio de Janeiro, focada em devolver amplitude de movimento e autonomia.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="#tratamentos">Tratamentos</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#equipe">Equipe</a>
+          <a href="#depoimentos">Depoimentos</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="tel:+5521999999999">(21) 99999-9999</a>
+          <a href="mailto:contato@amplitudefisio.com.br">contato@amplitudefisio.com.br</a>
+          <p>Botafogo, Rio de Janeiro – RJ</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Amplitude Fisioterapia. Todos os direitos reservados.</span>
+      <span>CREFITO 0000-F — número ilustrativo, substitua pelo real</span>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-fab" href="https://wa.me/5521999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="#fff" fill-opacity="0"/><path d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.09-.44-.14-.62.14-.18.28-.72.9-.88 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.24-1.38-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.49.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.49-.07-.14-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47-.16-.01-.35-.01-.53-.01-.18 0-.49.07-.74.35-.25.28-.97.95-.97 2.31 0 1.36.99 2.68 1.13 2.86.14.18 1.95 2.98 4.73 4.18.66.28 1.18.45 1.58.58.66.21 1.27.18 1.75.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32z" fill="#fff"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" stroke="#fff" stroke-opacity="0"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+  navToggle && navToggle.addEventListener('click', () => {
+    const open = navLinks.style.display === 'flex';
+    navLinks.style.display = open ? 'none' : 'flex';
+    navLinks.style.cssText += open ? '' : 'position:absolute;top:78px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px 32px;border-bottom:1px solid var(--line);gap:18px;';
+  });
+
+  // Reveal on scroll
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal, .service-card');
+  if (reduced) {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  }
+
+  // Goniometer hero animation
+  function polarToCartesian(cx, cy, r, angleDeg){
+    const rad = angleDeg * Math.PI / 180;
+    return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
+  }
+  function arcPath(cx, cy, r, startAngle, endAngle){
+    if (endAngle <= startAngle) return '';
+    const start = polarToCartesian(cx, cy, r, startAngle);
+    const end = polarToCartesian(cx, cy, r, endAngle);
+    const largeArc = (endAngle - startAngle) > 180 ? 1 : 0;
+    return `M ${cx} ${cy} L ${start.x.toFixed(2)} ${start.y.toFixed(2)} A ${r} ${r} 0 ${largeArc} 0 ${end.x.toFixed(2)} ${end.y.toFixed(2)} Z`;
+  }
+
+  const HINGE = { x: 150, y: 330 };
+  const ARM_LEN = 128, ARC_R = 96, TARGET = 120;
+
+  // static ticks every 15deg from 0 to 120
+  const ticksGroup = document.getElementById('ticks');
+  for (let a = 0; a <= 120; a += 15) {
+    const inner = polarToCartesian(HINGE.x, HINGE.y, 118, a);
+    const outer = polarToCartesian(HINGE.x, HINGE.y, 130, a);
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1', inner.x); l.setAttribute('y1', inner.y);
+    l.setAttribute('x2', outer.x); l.setAttribute('y2', outer.y);
+    l.setAttribute('opacity', a % 30 === 0 ? '0.9' : '0.35');
+    ticksGroup.appendChild(l);
+  }
+
+  const armLine = document.getElementById('armLine');
+  const armTip = document.getElementById('armTip');
+  const arcFill = document.getElementById('arcFill');
+  const degCounter = document.getElementById('degCounter');
+
+  function setAngle(angle){
+    const tip = polarToCartesian(HINGE.x, HINGE.y, ARM_LEN, angle);
+    armLine.setAttribute('x2', tip.x.toFixed(2));
+    armLine.setAttribute('y2', tip.y.toFixed(2));
+    armTip.setAttribute('cx', tip.x.toFixed(2));
+    armTip.setAttribute('cy', tip.y.toFixed(2));
+    arcFill.setAttribute('d', arcPath(HINGE.x, HINGE.y, ARC_R, 0, angle));
+    degCounter.textContent = Math.round(angle) + '°';
+  }
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  function playGoniometer(){
+    if (reduced) { setAngle(TARGET); return; }
+    const duration = 1500;
+    const start = performance.now();
+    function frame(now){
+      const t = Math.min(1, (now - start) / duration);
+      setAngle(TARGET * easeOutCubic(t));
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const heroVisual = document.querySelector('.hero-visual');
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        playGoniometer();
+        heroObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  setAngle(0);
+  heroObserver.observe(heroVisual);
+
+  // Booking form (front-end only demo)
+  const form = document.getElementById('bookingForm');
+  const success = document.getElementById('formSuccess');
+  form && form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
