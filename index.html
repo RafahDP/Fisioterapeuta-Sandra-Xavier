@@ -9,6 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> a4ff2af9f49083de69564d7e33d927d880034956
 </head>
 <body>
 
@@ -305,114 +310,6 @@
 <a class="whatsapp-fab" href="https://wa.me/5521999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="#fff" fill-opacity="0"/><path d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.09-.44-.14-.62.14-.18.28-.72.9-.88 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.24-1.38-.83-.74-1.38-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.49.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.49-.07-.14-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47-.16-.01-.35-.01-.53-.01-.18 0-.49.07-.74.35-.25.28-.97.95-.97 2.31 0 1.36.99 2.68 1.13 2.86.14.18 1.95 2.98 4.73 4.18.66.28 1.18.45 1.58.58.66.21 1.27.18 1.75.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32z" fill="#fff"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" stroke="#fff" stroke-opacity="0"/></svg>
 </a>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Mobile nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.querySelector('.nav-links');
-  navToggle && navToggle.addEventListener('click', () => {
-    const open = navLinks.style.display === 'flex';
-    navLinks.style.display = open ? 'none' : 'flex';
-    navLinks.style.cssText += open ? '' : 'position:absolute;top:78px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px 32px;border-bottom:1px solid var(--line);gap:18px;';
-  });
-
-  // Reveal on scroll
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealEls = document.querySelectorAll('.reveal, .service-card');
-  if (reduced) {
-    revealEls.forEach(el => el.classList.add('is-visible'));
-  } else {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(el => io.observe(el));
-  }
-
-  // Goniometer hero animation
-  function polarToCartesian(cx, cy, r, angleDeg){
-    const rad = angleDeg * Math.PI / 180;
-    return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
-  }
-  function arcPath(cx, cy, r, startAngle, endAngle){
-    if (endAngle <= startAngle) return '';
-    const start = polarToCartesian(cx, cy, r, startAngle);
-    const end = polarToCartesian(cx, cy, r, endAngle);
-    const largeArc = (endAngle - startAngle) > 180 ? 1 : 0;
-    return `M ${cx} ${cy} L ${start.x.toFixed(2)} ${start.y.toFixed(2)} A ${r} ${r} 0 ${largeArc} 0 ${end.x.toFixed(2)} ${end.y.toFixed(2)} Z`;
-  }
-
-  const HINGE = { x: 150, y: 330 };
-  const ARM_LEN = 128, ARC_R = 96, TARGET = 120;
-
-  // static ticks every 15deg from 0 to 120
-  const ticksGroup = document.getElementById('ticks');
-  for (let a = 0; a <= 120; a += 15) {
-    const inner = polarToCartesian(HINGE.x, HINGE.y, 118, a);
-    const outer = polarToCartesian(HINGE.x, HINGE.y, 130, a);
-    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
-    l.setAttribute('x1', inner.x); l.setAttribute('y1', inner.y);
-    l.setAttribute('x2', outer.x); l.setAttribute('y2', outer.y);
-    l.setAttribute('opacity', a % 30 === 0 ? '0.9' : '0.35');
-    ticksGroup.appendChild(l);
-  }
-
-  const armLine = document.getElementById('armLine');
-  const armTip = document.getElementById('armTip');
-  const arcFill = document.getElementById('arcFill');
-  const degCounter = document.getElementById('degCounter');
-
-  function setAngle(angle){
-    const tip = polarToCartesian(HINGE.x, HINGE.y, ARM_LEN, angle);
-    armLine.setAttribute('x2', tip.x.toFixed(2));
-    armLine.setAttribute('y2', tip.y.toFixed(2));
-    armTip.setAttribute('cx', tip.x.toFixed(2));
-    armTip.setAttribute('cy', tip.y.toFixed(2));
-    arcFill.setAttribute('d', arcPath(HINGE.x, HINGE.y, ARC_R, 0, angle));
-    degCounter.textContent = Math.round(angle) + '°';
-  }
-
-  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
-
-  function playGoniometer(){
-    if (reduced) { setAngle(TARGET); return; }
-    const duration = 1500;
-    const start = performance.now();
-    function frame(now){
-      const t = Math.min(1, (now - start) / duration);
-      setAngle(TARGET * easeOutCubic(t));
-      if (t < 1) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }
-
-  const heroVisual = document.querySelector('.hero-visual');
-  const heroObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        playGoniometer();
-        heroObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-  setAngle(0);
-  heroObserver.observe(heroVisual);
-
-  // Booking form (front-end only demo)
-  const form = document.getElementById('bookingForm');
-  const success = document.getElementById('formSuccess');
-  form && form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    success.classList.add('show');
-    form.reset();
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
