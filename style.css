@@ -60,6 +60,8 @@
     max-width:var(--maxw);
     margin:0 auto;
     padding:0 32px;
+    align-items:center;
+    justify-content:center;
   }
 
   .btn{
@@ -287,6 +289,11 @@
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:26px;
+    align-items:center;
+    width:fit-content;
+    justify-content:center;
+    margin:0 auto;
+    display:flex; flex-wrap:wrap; gap:26px;
   }
   .team-card{ text-align:left; }
   .avatar{
