@@ -26,6 +26,48 @@ document.getElementById('year').textContent = new Date().getFullYear();
     revealEls.forEach(el => io.observe(el));
   }
 
+  // Team photo carousel
+  const carousel = document.getElementById('carouselExampleIndicators');
+  if (carousel) {
+    const items = [...carousel.querySelectorAll('.carousel-item')];
+    const indicators = [...carousel.querySelectorAll('.carousel-indicators li')];
+    let activeIndex = 0;
+    let carouselTimer;
+
+    function showCarouselSlide(index) {
+      activeIndex = (index + items.length) % items.length;
+      items.forEach((item, itemIndex) => item.classList.toggle('active', itemIndex === activeIndex));
+      indicators.forEach((indicator, indicatorIndex) => {
+        indicator.classList.toggle('active', indicatorIndex === activeIndex);
+        indicator.setAttribute('aria-current', indicatorIndex === activeIndex ? 'true' : 'false');
+      });
+    }
+
+    function restartCarousel() {
+      clearInterval(carouselTimer);
+      if (!reduced && items.length > 1) carouselTimer = setInterval(() => showCarouselSlide(activeIndex + 1), 5000);
+    }
+
+    carousel.querySelector('.carousel-control-prev').addEventListener('click', (event) => {
+      event.preventDefault();
+      showCarouselSlide(activeIndex - 1);
+      restartCarousel();
+    });
+    carousel.querySelector('.carousel-control-next').addEventListener('click', (event) => {
+      event.preventDefault();
+      showCarouselSlide(activeIndex + 1);
+      restartCarousel();
+    });
+    indicators.forEach((indicator, indicatorIndex) => indicator.addEventListener('click', () => {
+      showCarouselSlide(indicatorIndex);
+      restartCarousel();
+    }));
+    carousel.addEventListener('mouseenter', () => clearInterval(carouselTimer));
+    carousel.addEventListener('mouseleave', restartCarousel);
+    showCarouselSlide(0);
+    restartCarousel();
+  }
+
   // Goniometer hero animation
   function polarToCartesian(cx, cy, r, angleDeg){
     const rad = angleDeg * Math.PI / 180;
