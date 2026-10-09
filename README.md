@@ -1,4 +1,4 @@
-# Amplitude Fisioterapia
+# Clínica Sandra Xavier
 
 Landing page institucional para a clínica de fisioterapia Sandra Xavier, com foco em apresentar os serviços, processo de atendimento, depoimentos e formulário de contato para agendamento.
 
