@@ -109,6 +109,7 @@
   .brand{
     display:flex; align-items:center; gap:12px;
     min-width:0;
+    margin-left:-16px;
   }
   .brand-mark{
     width:54px;
@@ -117,14 +118,14 @@
     display:block;
   }
   .logo{
-    display:flex; align-items:baseline; gap:8px;
+    display:flex; flex-direction:column; align-items:flex-start; gap:0;
     font-family:'Fraunces',serif; font-weight:600; font-size:22px; color:var(--ink);
-    white-space:nowrap;
+    line-height:1.1; white-space:nowrap;
   }
   .logo span{
     font-family:'IBM Plex Mono',monospace;
     font-size:10.5px; font-weight:400; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--ink-faint);
+    text-transform:uppercase; color:var(--ink-faint); white-space:normal;
   }
   .nav-links{
     display:flex; align-items:center; gap:34px;
@@ -265,21 +266,31 @@
   .process-list{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:0;
-    counter-reset:step;
+    gap:18px;
   }
   .process-step{
-    padding:0 22px;
-    border-left:1px solid var(--line);
     position:relative;
+    min-height:230px;
+    padding:24px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    transition:border-color .25s ease, transform .25s ease;
   }
-  .process-step:first-child{ border-left:none; padding-left:0; }
+  .process-step:hover{ border-color:var(--primary); transform:translateY(-4px); }
   .process-step .num{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    margin-bottom:20px;
+    border-radius:50%;
+    background:var(--primary-pale);
     font-family:'IBM Plex Mono',monospace;
-    font-size:13px; color:var(--accent);
+    font-size:13px;
+    color:var(--primary-deep);
     letter-spacing:0.06em;
-    margin-bottom:14px;
-    display:block;
   }
   .process-step h3{ font-size:18.5px; margin-bottom:10px; }
   .process-step p{ font-size:14.5px; color:var(--ink-soft); margin:0; }
@@ -430,6 +441,7 @@
   .booking .wrap{
     display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
   }
+  .booking-content{ padding:0 48px; }
   .booking .eyebrow{ color:var(--accent-pale); }
   .booking .eyebrow::before{ background:var(--accent); }
   .booking h2{ color:#fff; font-size:clamp(26px,3vw,36px); margin:16px 0 18px; }
@@ -500,14 +512,14 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width:920px){
+    .brand{ margin-left:0; }
     .nav-links, .nav-actions .btn-ghost{ display:none; }
     .nav-toggle{ display:flex; }
     .hero .wrap{ grid-template-columns:1fr; }
     .hero-visual{ order:-1; }
     .stats .wrap{ grid-template-columns:repeat(2,1fr); row-gap:28px; }
     .service-grid, .team-grid, .testimonial-grid{ grid-template-columns:repeat(2,1fr); }
-    .process-list{ grid-template-columns:repeat(2,1fr); row-gap:32px; }
-    .process-step{ border-left:none; padding-left:0; }
+    .process-list{ grid-template-columns:repeat(2,1fr); }
     .booking .wrap{ grid-template-columns:1fr; }
     .booking{ margin:0 16px; border-radius:20px; }
   }
@@ -516,6 +528,19 @@
     .service-grid, .team-grid, .testimonial-grid, .process-list{ grid-template-columns:1fr; }
     .footer-top{ flex-direction:column; }
     section{ padding:64px 0; }
+    .booking{ margin:0; padding:40px 0; border-radius:18px; }
+    .booking-content{ padding:0 20px; gap:32px; }
+    .booking-info{ gap:18px; }
+    .booking-info .row{ align-items:flex-start; font-size:15px; }
+    .booking-info .row b{ min-width:78px; }
+    .booking-form{ padding:22px 18px; }
+    .booking-form .field{ margin-bottom:18px; }
+    .booking-form label{ font-size:14px; margin-bottom:8px; }
+    .booking-form input, .booking-form select, .booking-form textarea{ font-size:16px; }
+    .booking-form input, .booking-form select{ min-height:48px; }
+    .booking-form textarea{ min-height:120px; }
+    .booking-form button{ min-height:48px; white-space:normal; }
+    .whatsapp-fab{ right:18px; bottom:18px; }
     .carousel-inner,
     .carousel-item{ min-height:380px; }
     .carousel-item img{ height:380px; }
