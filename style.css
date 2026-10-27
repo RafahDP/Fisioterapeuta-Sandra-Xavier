@@ -485,19 +485,29 @@
   .form-success.show{ display:block; }
 
   /* ---------- Footer ---------- */
-  footer{ padding:60px 0 34px; }
+  footer{
+    padding:60px 0 34px;
+    background:var(--primary-deep);
+    color:#fff;
+  }
   .footer-top{
     display:flex; justify-content:space-between; align-items:flex-start;
-    padding-bottom:40px; border-bottom:1px solid var(--line); gap:40px; flex-wrap:wrap;
+    padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.18); gap:40px; flex-wrap:wrap;
   }
   .footer-cols{ display:flex; gap:64px; flex-wrap:wrap; }
-  .footer-col h4{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:14px; }
-  .footer-col a, .footer-col p{ display:block; font-size:14px; color:var(--ink-soft); margin-bottom:9px; }
-  .footer-col a:hover{ color:var(--primary-deep); }
+  .footer-col h4{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-pale); margin-bottom:14px; }
+  .footer-col a, .footer-col p{ display:block; font-size:14px; color:#E7F0EA; margin-bottom:9px; }
+  .footer-col a:hover{ color:#fff; }
   .footer-bottom{
     display:flex; justify-content:space-between; align-items:center;
-    padding-top:26px; font-size:13px; color:var(--ink-faint); flex-wrap:wrap; gap:10px;
+    padding-top:26px; font-size:13px; color:#D7E7DF; flex-wrap:wrap; gap:10px;
   }
+  footer .logo,
+  footer .logo span,
+  footer p,
+  footer a{ color:inherit; }
+  footer .logo span{ color:#D7E7DF; }
+  footer p{ color:#D7E7DF; }
 
   /* ---------- WhatsApp FAB ---------- */
   .whatsapp-fab{

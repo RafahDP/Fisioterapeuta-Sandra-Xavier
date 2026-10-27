@@ -165,3 +165,35 @@ if (yearEl) {
       form.reset();
     });
   }
+
+  // Booking form -> Envio direto para o WhatsApp
+  const bookingForm = document.getElementById('bookingForm');
+  const bookingSuccess = document.getElementById('formSuccess');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Pega os valores digitados nos campos
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const treatment = document.getElementById('treatment').value;
+      const message = document.getElementById('message').value.trim();
+      
+      // Monta o texto formatado para o WhatsApp
+      let text = `Olá! Gostaria de agendar uma avaliação.\n\n*Nome:* ${name}\n*Telefone:* ${phone}\n*Tratamento:* ${treatment}`;
+      
+      if (message) {
+        text += `\n*Observação:* ${message}`;
+      }
+      
+      // Codifica o texto para o formato de URL do WhatsApp
+      const encodedText = encodeURIComponent(text);
+      const whatsappUrl = `https://wa.me/5521994792249?text=${encodedText}`;
+      
+      // Abre o WhatsApp em uma nova aba com a mensagem pronta
+      window.open(whatsappUrl, '_blank');
+      
+      // Limpa o formulário após o envio
+      bookingForm.reset();
+    });
+  }
