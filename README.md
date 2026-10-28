@@ -1,87 +1,57 @@
-# Clínica Sandra Xavier
+# Instituto SaxFisio
 
-Landing page institucional para a clínica de fisioterapia Sandra Xavier, com foco em apresentar os serviços, processo de atendimento, depoimentos e formulário de contato para agendamento.
+Site institucional de fisioterapia e reabilitação da Sandra Xavier. A página apresenta os tratamentos, explica as etapas do atendimento e permite que visitantes solicitem uma avaliação pelo WhatsApp.
 
-## Sobre o projeto
+## O site
 
-Este projeto é uma página estática desenvolvida em HTML, CSS e JavaScript, com design moderno e visual voltado para a área de saúde e reabilitação. A estrutura comunica de forma clara:
+A página reúne:
 
-- tratamentos oferecidos
-- como funciona a avaliação e o acompanhamento
-- apresentação da profissional
-- depoimentos de pacientes
-- contato e WhatsApp para agendamento
+- Apresentação da clínica e chamada para agendamento.
+- Tratamentos ortopédicos, esportivos, capilares, de feridas, faciais e para a terceira idade.
+- Etapas do atendimento: avaliação, plano de cuidado, tratamento e acompanhamento.
+- Apresentação da Sandra Xavier, com um carrossel de imagens.
+- Formulário de solicitação de horário e atalho para contato pelo WhatsApp.
+
+O formulário não envia dados para um servidor: ao ser enviado, ele prepara uma mensagem com os dados preenchidos e abre uma conversa no WhatsApp. A pessoa precisa confirmar o envio no aplicativo.
 
 ## Tecnologias
 
 - HTML5
 - CSS3
-- JavaScript
-- Google Fonts
-- Assets locais em pasta `assets/`
+- JavaScript sem dependências de terceiros
+- Google Fonts (Fraunces, Inter e IBM Plex Mono)
 
-## Estrutura do projeto
+## Estrutura
 
 ```text
 .
-├── assets/
-│   ├── hero-img.jpeg
-│   ├── fisioterapia motora.jpeg
-│   ├── WhatsApp Image 2026-09-01 at 5.12.25 PM.jpeg
-│   ├── WhatsApp Image 2026-09-01 at 5.15.05 PM.jpeg
-│   ├── WhatsApp Image 2026-09-01 at 5.17.42 PM.jpeg
-│   └── logo.svg
-├── index.html
-├── style.css
-├── script.js
+├── assets/       # Imagens e logotipo
+├── index.html    # Conteúdo e estrutura da página
+├── script.js     # Menu, animações, carrossel e formulário
+├── style.css     # Estilos e layout responsivo
 └── README.md
 ```
 
 ## Como executar
 
-Como é uma página estática, basta abrir o arquivo `index.html` no navegador.
-
-Se preferir rodar em um servidor local:
+Abra `index.html` diretamente no navegador ou inicie um servidor local na pasta do projeto:
 
 ```bash
 python -m http.server 8000
 ```
 
-Depois acesse:
+Em seguida, acesse <http://localhost:8000>.
 
-```text
-http://localhost:8000
-```
+## Atualização de informações
 
-## Personalização
+- Edite textos, tratamentos, horários e dados de contato em `index.html`.
+- Os links e o número de destino do WhatsApp também estão em `index.html`.
+- O número usado para enviar o formulário pelo WhatsApp está em `script.js`.
+- Atualize imagens e logotipo na pasta `assets/` e ajuste os caminhos correspondentes em `index.html`.
+- Personalize cores, tipografia e apresentação em `style.css`.
 
-Os principais pontos para ajustar no site são:
+## Contato exibido no site
 
-- texto e informações da clínica em `index.html`
-- cores, tipografia e layout em `style.css`
-- interações como menu, formulário e animações em `script.js`
-- telefone, e-mail e endereço no bloco de contato
-
-## Informações de contato
-
-A página já contém dados de exemplo para contato, como:
-
-- endereço: Rua Voluntários da Pátria, 190 — Botafogo, Rio de Janeiro – RJ
-- telefone: (21) 99999-9999
-- e-mail: contato@amplitudefisio.com.br
-
-Essas informações devem ser ajustadas para os dados reais da clínica antes da publicação.
-
-## Observações
-
-Este projeto foi pensado para apresentação digital da clínica e pode ser expandido para incluir:
-
-- formulário com envio real por e-mail ou WhatsApp
-- calendário de agendamento
-- páginas internas de serviços
-- SEO e otimização para busca
-- integração com redes sociais e CRM
-
-## Licença
-
-Este projeto foi desenvolvido para uso pessoal e institucional. Ajustes e reutilização dependem da autorização do proprietário da marca e do conteúdo.
+- Telefone: (21) 99479-2249
+- E-mail: sandraxavierfisioterapia@gmail.com
+- Horário: segunda a sexta-feira, das 7h às 20h
