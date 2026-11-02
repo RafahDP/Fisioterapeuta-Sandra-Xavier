@@ -1,15 +1,15 @@
 # Instituto SaxFisio
 
-Site institucional de fisioterapia e reabilitação da Sandra Xavier. A página apresenta os tratamentos, explica as etapas do atendimento e permite que visitantes solicitem uma avaliação pelo WhatsApp.
+Site institucional do Instituto SaxFisio, liderado pela CEO Sandra Xavier, fisioterapeuta que oferece diversos tipos de tratamentos. A página apresenta os serviços, explica as etapas do atendimento e permite que visitantes solicitem uma avaliação pelo WhatsApp.
 
 ## O site
 
 A página reúne:
 
-- Apresentação da clínica e chamada para agendamento.
+- Apresentação do Instituto SaxFisio e chamada para agendamento.
 - Tratamentos ortopédicos, esportivos, capilares, de feridas, faciais e para a terceira idade.
 - Etapas do atendimento: avaliação, plano de cuidado, tratamento e acompanhamento.
-- Apresentação da Sandra Xavier, com um carrossel de imagens.
+- Apresentação da CEO Sandra Xavier, fisioterapeuta do Instituto SaxFisio, com um carrossel de imagens.
 - Formulário de solicitação de horário e atalho para contato pelo WhatsApp.
 
 O formulário não envia dados para um servidor: ao ser enviado, ele prepara uma mensagem com os dados preenchidos e abre uma conversa no WhatsApp. A pessoa precisa confirmar o envio no aplicativo.
