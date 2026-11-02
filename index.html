@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instituto SaxFisio — Fisioterapia e Reabilitação</title>
   <meta name="description"
-    content="Instituto SaxFisio: fisioterapia e diversos tratamentos com a CEO Sandra Xavier, fisioterapeuta no Rio de Janeiro.">
+    content="Conheça o Instituto SaxFisio: fisioterapia e diversos tratamentos com Sandra Xavier, CEO e fisioterapeuta no Rio de Janeiro.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -21,7 +21,7 @@
     <div class="wrap">
       <div class="brand">
         <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"
-          aria-label="Logo do Instituto SaxFisio">
+          role="img" aria-label="Símbolo do Instituto SaxFisio">
           <path fill="#CD9662"
             d="M 100 200 C 60 320, 110 450, 250 450 C 370 450, 440 260, 400 130 C 425 250, 360 432, 250 432 C 125 432, 80 320, 100 200 Z" />
           <path fill="#CD9662"
@@ -47,16 +47,17 @@
         </svg>
         <a href="#top" class="logo">Instituto SaxFisio <span>Fisioterapia e reabilitação</span></a>
       </div>
-      <nav class="nav-links">
+      <nav class="nav-links" id="primary-navigation" aria-label="Navegação principal">
         <a href="#tratamentos">Tratamentos</a>
         <a href="#como-funciona">Como funciona</a>
-        <a href="#equipe">Equipe</a>
+        <a href="#equipe">Sobre Sandra</a>
         <a href="#contato">Contato</a>
       </nav>
       <div class="nav-actions">
         <a href="#contato" class="btn btn-ghost btn-sm">Agendar avaliação</a>
-        <button class="nav-toggle" aria-label="Abrir menu" id="navToggle">
-          <span></span><span></span><span></span>
+        <button class="nav-toggle" type="button" aria-label="Menu principal" aria-controls="primary-navigation"
+          aria-expanded="false" id="navToggle">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>
       </div>
     </div>
@@ -70,10 +71,9 @@
         <div>
           <span class="eyebrow">Fisioterapia · Rio de Janeiro</span>
           <h1>Fisioterapia moderna para resultados reais</h1>
-          <p class="lead">Combinamos a prática mais atual da reabilitação com um atendimento humano, acolhedor e
-            individualizado.
-            Avaliamos seu caso com atenção e criamos um plano de tratamento pensado para sua rotina, ajudando você a
-            recuperar movimento, conforto, autoestima e autonomia.
+          <p class="lead">No Instituto SaxFisio, Sandra Xavier — CEO e fisioterapeuta — oferece diversos tratamentos
+            com atendimento humano, acolhedor e individualizado. Após uma avaliação cuidadosa, cada plano é pensado
+            para sua rotina e seus objetivos, ajudando você a recuperar movimento, conforto, autoestima e autonomia.
           </p>
           <div class="hero-actions">
             <a href="#contato" class="btn btn-primary">Agendar avaliação</a>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="hero-img-container">
-          <img src="assets/hero-img.jpeg" alt="Fisioterapeuta">
+          <img src="assets/hero-img.jpeg" alt="Atendimento de fisioterapia no Instituto SaxFisio">
         </div>
       </div>
     </section>
@@ -210,23 +210,36 @@
       </div>
     </section>
 
-    <!-- TRETMENTS -->
+    <!-- TREATMENTS -->
     <section id="equipe">
       <div class="wrap">
         <div class="section-head reveal">
-          <span class="eyebrow">Tratamentos oferecidos</span>
+          <span class="eyebrow">Instituto SaxFisio</span>
           <h2>Cuidado individualizado em cada etapa</h2>
-          <p>Acompanhamento pessoal e dedicado — Sandra Xavier está presente em cada etapa, conhecendo profundamente sua
-            condição e seus objetivos.</p>
+          <p>A CEO Sandra Xavier é fisioterapeuta e oferece diversos tipos de tratamentos, com cuidado atento às
+            necessidades e aos objetivos de cada pessoa.</p>
         </div>
         <div class="team-grid">
           <div class="team-card reveal">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" role="region"
+              aria-label="Tratamentos em destaque no Instituto SaxFisio">
               <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li>
+                  <button type="button" aria-label="Mostrar tratamento ortopédico"
+                    aria-controls="carouselExampleIndicators" aria-current="true"></button>
+                </li>
+                <li>
+                  <button type="button" aria-label="Mostrar terapia capilar"
+                    aria-controls="carouselExampleIndicators"></button>
+                </li>
+                <li>
+                  <button type="button" aria-label="Mostrar tratamento esportivo"
+                    aria-controls="carouselExampleIndicators"></button>
+                </li>
+                <li>
+                  <button type="button" aria-label="Mostrar tratamento de feridas"
+                    aria-controls="carouselExampleIndicators"></button>
+                </li>
               </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -258,7 +271,7 @@
                     <source media="(max-width: 600px)" srcset="assets/fisioterapia%20motora-cell.jpeg">
                     <source media="(max-width: 1024px)" srcset="assets/fisioterapia%20motora-tablet.jpeg">
                     <img class="d-block w-100" src="assets/fisioterapia%20motora-pc.jpeg"
-                      alt="Exercício terapêutico na clínica">
+                      alt="Exercício terapêutico no Instituto SaxFisio">
                   </picture>
                   <div class="carousel-caption">
                     <span>Esporte e performance</span>
@@ -278,24 +291,22 @@
                   </div>
                 </div>
               </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <button type="button" class="carousel-control-prev" aria-label="Tratamento anterior">
                 <span class="carousel-arrow-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"
-                    stroke-linejoin="round">
+                    stroke-linejoin="round" aria-hidden="true">
                     <polyline points="15 18 9 12 15 6"></polyline>
                   </svg>
                 </span>
-                <span class="sr-only">Anterior</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              </button>
+              <button type="button" class="carousel-control-next" aria-label="Próximo tratamento">
                 <span class="carousel-arrow-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"
-                    stroke-linejoin="round">
+                    stroke-linejoin="round" aria-hidden="true">
                     <polyline points="9 18 15 12 9 6"></polyline>
                   </svg>
                 </span>
-                <span class="sr-only">Próximo</span>
-              </a>
+              </button>
             </div>
             <h3>Sandra Xavier — CEO e fisioterapeuta</h3>
             <span class="role">Instituto SaxFisio</span>
@@ -310,7 +321,7 @@
     </section>
 
 
-    <!--- BOOKING-->
+    <!-- BOOKING -->
 
     <section id="contato">
       <div class="wrap">
@@ -321,8 +332,8 @@
               <h2>Vamos começar sua recuperação?</h2>
               <p>Preencha seus dados e entramos em contato para marcar sua avaliação inicial.</p>
               <div class="booking-info">
-                <div class="row"><b>Telefone</b> (21) 99479-2249</div>
-                <div class="row"><b>E-mail</b> sandraxavierfisioterapia@gmail.com </div>
+                <div class="row"><b>Telefone</b> <a href="tel:+5521994792249">(21) 99479-2249</a></div>
+                <div class="row"><b>E-mail</b> <a href="mailto:sandraxavierfisioterapia@gmail.com">sandraxavierfisioterapia@gmail.com</a></div>
                 <div class="row"><b>Horário</b> Seg–Sex: 7h–20h</div>
               </div>
             </div>
@@ -330,19 +341,19 @@
             <form class="booking-form" id="bookingForm">
               <div class="field">
                 <label for="client-name">Nome completo</label>
-                <input id="client-name" class="input-name" type="text" required placeholder="Seu nome">
+                <input id="client-name" class="input-name" type="text" autocomplete="name" required placeholder="Seu nome">
               </div>
               <div class="field">
                 <label for="client-phone">WhatsApp / telefone</label>
-                <input id="client-phone" class="input-phone" type="tel" required placeholder="(21) 90000-0000">
+                <input id="client-phone" class="input-phone" type="tel" autocomplete="tel" required placeholder="(21) 90000-0000">
               </div>
               <div class="field">
                 <label for="treatment">Tratamento de interesse</label>
                 <select id="treatment">
-                  <option>Ortopédica</option>
-                  <option>Esportiva</option>
-                  <option>Terceira idade</option>
-                  <option>Microagulhamento Capilar</option>
+                  <option>Fisioterapia ortopédica</option>
+                  <option>Fisioterapia esportiva</option>
+                  <option>Fisioterapia para terceira idade</option>
+                  <option>Terapia capilar</option>
                   <option>Tratamento de Feridas</option>
                   <option>Tratamentos Faciais</option>
                 </select>
@@ -352,8 +363,9 @@
                 <textarea id="message" placeholder="Ex.: dor no joelho ao subir escadas há 2 semanas"></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Solicitar horário</button>
-              <div class="form-success" id="formSuccess">Recebemos sua solicitação. Nossa equipe entra em contato em
-                breve para confirmar o melhor horário.</div>
+              <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+                A mensagem está pronta no WhatsApp. Confirme o envio no aplicativo para concluir sua solicitação.
+              </div>
             </form>
           </div>
         </div>
@@ -378,18 +390,17 @@
             <h4>Navegação</h4>
             <a href="#tratamentos">Tratamentos</a>
             <a href="#como-funciona">Como funciona</a>
-            <a href="#equipe">Equipe</a>
+            <a href="#equipe">Sobre Sandra</a>
           </div>
           <div class="footer-col">
             <h4>Contato</h4>
-            <a href="tel:+55 21 99479-2249">(21) 99479-2249</a>
-            <a href="mailto:contato@SandraXavier.com.br">sandraxavierfisioterapia@gmail.com</a>
-            <p></p><!-- espaço pra colocar endereço-->
+            <a href="tel:+5521994792249">(21) 99479-2249</a>
+            <a href="mailto:sandraxavierfisioterapia@gmail.com">sandraxavierfisioterapia@gmail.com</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year"></span> Instituto SaxFI. Todos os direitos reservados.</span>
+        <span>© <span id="year"></span> Instituto SaxFisio. Todos os direitos reservados.</span>
         <span>CREFITO 436796-F</span>
       </div>
     </div>
